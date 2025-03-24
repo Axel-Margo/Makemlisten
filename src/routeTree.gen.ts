@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as ShareIndexImport } from './routes/share/index'
 import { Route as AuthentificationConnexionPageImport } from './routes/authentification/connexion-page'
 import { Route as SharePlatformChoiceIndexImport } from './routes/share/platform-choice/index'
 import { Route as SharePlatformChoiceTidalImport } from './routes/share/platform-choice/tidal'
@@ -24,6 +25,12 @@ import { Route as SharePlatformChoiceAppleMusicImport } from './routes/share/pla
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ShareIndexRoute = ShareIndexImport.update({
+  id: '/share/',
+  path: '/share/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -85,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthentificationConnexionPageImport
       parentRoute: typeof rootRoute
     }
+    '/share/': {
+      id: '/share/'
+      path: '/share'
+      fullPath: '/share'
+      preLoaderRoute: typeof ShareIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/share/platform-choice/apple-music': {
       id: '/share/platform-choice/apple-music'
       path: '/share/platform-choice/apple-music'
@@ -128,6 +142,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/authentification/connexion-page': typeof AuthentificationConnexionPageRoute
+  '/share': typeof ShareIndexRoute
   '/share/platform-choice/apple-music': typeof SharePlatformChoiceAppleMusicRoute
   '/share/platform-choice/deezer': typeof SharePlatformChoiceDeezerRoute
   '/share/platform-choice/spotify': typeof SharePlatformChoiceSpotifyRoute
@@ -138,6 +153,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/authentification/connexion-page': typeof AuthentificationConnexionPageRoute
+  '/share': typeof ShareIndexRoute
   '/share/platform-choice/apple-music': typeof SharePlatformChoiceAppleMusicRoute
   '/share/platform-choice/deezer': typeof SharePlatformChoiceDeezerRoute
   '/share/platform-choice/spotify': typeof SharePlatformChoiceSpotifyRoute
@@ -149,6 +165,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/authentification/connexion-page': typeof AuthentificationConnexionPageRoute
+  '/share/': typeof ShareIndexRoute
   '/share/platform-choice/apple-music': typeof SharePlatformChoiceAppleMusicRoute
   '/share/platform-choice/deezer': typeof SharePlatformChoiceDeezerRoute
   '/share/platform-choice/spotify': typeof SharePlatformChoiceSpotifyRoute
@@ -161,6 +178,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/authentification/connexion-page'
+    | '/share'
     | '/share/platform-choice/apple-music'
     | '/share/platform-choice/deezer'
     | '/share/platform-choice/spotify'
@@ -170,6 +188,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/authentification/connexion-page'
+    | '/share'
     | '/share/platform-choice/apple-music'
     | '/share/platform-choice/deezer'
     | '/share/platform-choice/spotify'
@@ -179,6 +198,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/authentification/connexion-page'
+    | '/share/'
     | '/share/platform-choice/apple-music'
     | '/share/platform-choice/deezer'
     | '/share/platform-choice/spotify'
@@ -190,6 +210,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthentificationConnexionPageRoute: typeof AuthentificationConnexionPageRoute
+  ShareIndexRoute: typeof ShareIndexRoute
   SharePlatformChoiceAppleMusicRoute: typeof SharePlatformChoiceAppleMusicRoute
   SharePlatformChoiceDeezerRoute: typeof SharePlatformChoiceDeezerRoute
   SharePlatformChoiceSpotifyRoute: typeof SharePlatformChoiceSpotifyRoute
@@ -200,6 +221,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthentificationConnexionPageRoute: AuthentificationConnexionPageRoute,
+  ShareIndexRoute: ShareIndexRoute,
   SharePlatformChoiceAppleMusicRoute: SharePlatformChoiceAppleMusicRoute,
   SharePlatformChoiceDeezerRoute: SharePlatformChoiceDeezerRoute,
   SharePlatformChoiceSpotifyRoute: SharePlatformChoiceSpotifyRoute,
@@ -219,6 +241,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/authentification/connexion-page",
+        "/share/",
         "/share/platform-choice/apple-music",
         "/share/platform-choice/deezer",
         "/share/platform-choice/spotify",
@@ -231,6 +254,9 @@ export const routeTree = rootRoute
     },
     "/authentification/connexion-page": {
       "filePath": "authentification/connexion-page.tsx"
+    },
+    "/share/": {
+      "filePath": "share/index.tsx"
     },
     "/share/platform-choice/apple-music": {
       "filePath": "share/platform-choice/apple-music.tsx"

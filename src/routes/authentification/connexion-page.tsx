@@ -11,7 +11,7 @@ function RouteComponent() {
   return <div className='w-full '>
             <SocietyMark />
             <div className='bg-neutral-700 p-4'>
-              <h1 className='text-center'>Connexion</h1>
+              <h1 className='text-center mt-auto'>Connexion</h1>
           <GoogleLogin
               onSuccess={credentialResponse => {
                 console.log(credentialResponse);

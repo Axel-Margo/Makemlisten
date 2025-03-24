@@ -1,11 +1,16 @@
+// filepath: c:\Users\shiny\DEV\makemlisten\tsconfig.json
 {
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "target": "ESNext",
+    "target": "ES2015", // Assurez-vous que cette option est définie à ES2015 ou supérieur
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "skipLibCheck": true
-  }
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": "./"
+  },
+  "include": ["./server/**/*.ts", "./src/**/*.ts", "./src/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
 }
