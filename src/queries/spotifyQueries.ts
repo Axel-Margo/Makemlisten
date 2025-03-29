@@ -11,4 +11,7 @@ export const getUserPlaylist = async () => {
                 Authorization: 'Bearer' + ACCESS_TOKEN 
             }
         }
-    )
+    ) 
+    console.log(data)
+    return data.json()
+}

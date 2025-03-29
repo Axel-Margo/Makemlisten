@@ -15,6 +15,13 @@ app.use(express.json());
 
 app.all("/api/auth/*", toNodeHandler(auth));
 
+
+
+// Routes
+app.use('/api/spotify', spotifyRoutes)
+app.use('/products', productsRoutes )
+
+
 app.listen(port, () => {
     console.log(`Better Auth app listening on port ${port}`);
 });

@@ -11,6 +11,6 @@
     "outDir": "./dist",
     "rootDir": "./"
   },
-  "include": ["./server/**/*.ts", "./src/**/*.ts", "./src/**/*.tsx"],
+  "include": ["./server/**/*.ts", "./src/**/*.ts", "./src/**/*.tsx", "server/routes/spotifyRoutes.mts"],
   "exclude": ["node_modules", "dist"]
 }
