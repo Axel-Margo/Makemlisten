@@ -3,23 +3,22 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./dist/auth.js";
+import spotifyRoutes from './routes/spotifyRoutes.mjs'
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5432;
+const port = process.env.PORT
 
 app.use(cors());
-
 app.use(express.json());
-
 app.all("/api/auth/*", toNodeHandler(auth));
 
 
 
 // Routes
-app.use('/api/spotify', spotifyRoutes)
-app.use('/products', productsRoutes )
+app.use('/auth/spotify', spotifyRoutes)
+
 
 
 app.listen(port, () => {
