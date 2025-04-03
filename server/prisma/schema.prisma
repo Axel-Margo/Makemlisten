@@ -14,15 +14,16 @@ datasource db {
 }
 
 model User {
-  id            String       @id 
-  email         String    @unique
-  name          String?
-  emailVerified Boolean
-  image         String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  sessions      Session[]
-  accounts      Account[]
+  id             String           @id
+  email          String           @unique
+  name           String?
+  emailVerified  Boolean
+  image          String?
+  createdAt      DateTime
+  updatedAt      DateTime
+  SpotifySession SpotifySession[]
+  sessions       Session[]
+  accounts       Account[]
 
   @@map("user")
 }
@@ -70,4 +71,19 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model SpotifySession {
+  id                    String   @id @default(cuid())
+  userId                String
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String
+  refreshToken          String
+  accessTokenExpiresAt  DateTime
+  refreshTokenExpiresAt DateTime
+  scope                 String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@map("spotify_session")
 }
