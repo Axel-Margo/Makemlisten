@@ -37,12 +37,10 @@ router.get("/login", function(req, res) {
         }
     
         // Échanger le code contre des jetons
-        const tokenData = await exchangeCodeForTokens(code, "http://localhost:5431/auth/spotify/callback");
+        const tokenData = await exchangeCodeForTokens(code, "http://localhost:5431/auth/callback/spotify");
         const { access_token, refresh_token } = tokenData;
     
         // Stocker les jetons dans la db
-        
-       
     
         console.log("Access Token:", access_token);
         console.log("Refresh Token:", refresh_token);

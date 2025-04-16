@@ -12,7 +12,6 @@ export const signInWithSocial = async ({ provider }: { provider: "github" | "app
     })
     return data;
   } catch (error) {
-    console.error("Error during social sign-in:", error);
-    throw error;
+    console.error("Error during social sign-in:", error)
   }
-};
+}

@@ -7,15 +7,24 @@ const prisma = new PrismaClient();
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
-        provider: "postgresql", // or "mysql", "sqlite", etc.
+      provider: "postgresql",
     }),
-    emailAndPassword: {  
-        enabled: true
+    emailAndPassword: {
+      enabled: true,
     },
-    socialProviders: { 
-            twitter: { 
-            clientId: process.env.TWITTER_CLIENT_ID as string, 
-            clientSecret: process.env.TWITTER_CLIENT_SECRET as string, 
-        }
-    }
-});
+    socialProviders: {
+      spotify: {
+        clientId: process.env.SPOTIFY_CLIENT_ID as string,
+        clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
+      },
+      twitter: {
+        clientId: process.env.TWITTER_CLIENT_ID as string,
+        clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
+        scopes: ["tweet.read", "users.read", "offline.access"], // Scopes nécessaires
+      },
+    },
+    trustedOrigins: [
+      "http://localhost:3001", // Origine du frontend
+      "http://localhost:5431"// Origine du backend
+    ],
+  });
