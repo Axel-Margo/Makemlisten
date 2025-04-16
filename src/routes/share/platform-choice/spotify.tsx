@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { PlaylistDisplay } from '../../../ui/PlaylistDisplay'
-import { SearchBar } from '../../../components/SearchBar'
+import { PlaylistDisplay } from '../../../ui/PlaylistDisplay.jsx'
+import { SearchBar } from '../../../components/SearchBar.jsx'
 
 export const Route = createFileRoute('/share/platform-choice/spotify')({
   component: SpotifyPlaylists,
@@ -9,7 +9,7 @@ export const Route = createFileRoute('/share/platform-choice/spotify')({
 function SpotifyPlaylists() {
   return (
     <div className='flex justify-center flex-col mx-16'>
-      <SearchBar  />
+      <SearchBar onChange={() => {}} value=''  />
       <PlaylistDisplay />
     </div>
   )

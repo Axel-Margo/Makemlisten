@@ -1,8 +1,8 @@
 interface SocialLoginButtonProps {
-    text: string; // Texte affiché sur le bouton
-    iconSrc: string; // URL de l'icône
-    onClick: () => void; // Fonction appelée lors du clic
-    className?: string; // Classe CSS personnalisée pour le bouton
+    text: string; 
+    iconSrc: string; 
+    onClick: () => void; 
+    className?: string; 
   }
   
   export const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({ text, iconSrc, onClick, className }) => {

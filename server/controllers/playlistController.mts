@@ -1,5 +1,5 @@
 export const playlistController = {
-    getPlaylists: (req, res) => {
+    getPlaylists: (req: any, res: any) => {
         
     }
 }

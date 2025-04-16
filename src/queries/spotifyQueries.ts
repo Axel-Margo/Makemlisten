@@ -1,4 +1,10 @@
-const ACCESS_TOKEN = "to define"
+import { authClient } from "../lib/auth-client";
+
+const session = await authClient.getSession();
+console.log(session)
+if (!session) {
+  throw new Error("Access token not found. Please log in again.");
+}
 
 
 

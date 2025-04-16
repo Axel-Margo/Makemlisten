@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { SocietyMark } from '../../components/SocietyMark'
-import { SpotifyLogin } from '../../ui/SpotifyLogin'
+import { SpotifyLogin } from '../../ui/SocialLogins/SpotifyLogin'
 import { TwitterLogin } from '../../ui/TwitterLogin'
 
 export const Route = createFileRoute('/authentification/connexion-page')({

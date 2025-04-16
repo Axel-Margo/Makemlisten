@@ -1,16 +1,28 @@
-// filepath: c:\Users\shiny\DEV\makemlisten\tsconfig.json
 {
   "compilerOptions": {
-    "strict": true,
+    /* Base Options: */
     "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "target": "ES2015", // Assurez-vous que cette option est définie à ES2015 ou supérieur
-    "module": "ESNext",
-    "moduleResolution": "node",
     "skipLibCheck": true,
-    "outDir": "./dist",
-    "rootDir": "./"
-  },
-  "include": ["./server/**/*.ts", "./src/**/*.ts", "./src/**/*.tsx", "server/routes/spotifyRoutes.mjs", "server/lib/formulas.mjs"],
-  "exclude": ["node_modules", "dist"]
-}
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true, 
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "noEmit": true,
+    "composite": true,
+    "declarationMap": true,
+    "jsx": "react-jsx"
+    
+},
+"include": ["server/**/*","**/*.ts",
+    "**/*.tsx"],
+"exclude": ["node_modules"]
+  }
