@@ -15,6 +15,6 @@ export const TwitterLogin = () => {
   };
 
     return  <>
-                <SocialLoginButton className="bg-neutral-800" onClick={handleTwitterLogin} text="Sign In with Twitter" iconSrc="#" />
+                <SocialLoginButton className="bg-blue-400" onClick={handleTwitterLogin} text="Sign In with Twitter" iconSrc="#" />
             </>
  }

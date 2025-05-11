@@ -1,20 +1,25 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { SocietyMark } from '../../components/SocietyMark'
 import { SpotifyLogin } from '../../ui/SocialLogins/SpotifyLogin'
-import { TwitterLogin } from '../../ui/TwitterLogin'
+import { TwitterLogin } from '../../ui/SocialLogins/TwitterLogin'
 
 export const Route = createFileRoute('/authentification/connexion-page')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div className='w-full '>
-            <SocietyMark />
-            <div className='bg-neutral-700 p-4'>
-              <h1 className='text-center mt-auto'>Connexion</h1>
-          <SpotifyLogin />
-          <TwitterLogin />
-
+  return <div className='w-full h-full'>
+            <div className='text-center'>
+              <SocietyMark />
+            </div>
+            <div className='bg-neutral-700/60 p-4 mx-8 h-full '>
+              <h1 className='text-center text-3xl '>
+                Connexion
+              </h1>
+              <div className='mt-6 mb-30 w-full h-full'>
+                  <SpotifyLogin />
+                  <TwitterLogin />
+              </div>
           
             </div>
          </div>

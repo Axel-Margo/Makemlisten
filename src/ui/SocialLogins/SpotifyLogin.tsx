@@ -1,4 +1,3 @@
-import { useNavigate } from "@tanstack/react-router";
 import { SocialLoginButton } from "../../components/SocialLoginButtons"
 import { authClient, signInWithSocial } from "../../lib/auth-client"
 
