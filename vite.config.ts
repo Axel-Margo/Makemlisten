@@ -10,13 +10,5 @@ export default defineConfig({
       autoCodeSplitting: true,
     }),
     react(),
-  ],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5431',
-        changeOrigin: true,
-      },
-    },
-  }
+  ]
 })

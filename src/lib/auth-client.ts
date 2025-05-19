@@ -4,11 +4,12 @@ export const authClient = createAuthClient({
     baseURL: "http://localhost:5431" // the base url of your auth server
 })
 
-export const signInWithSocial = async ({ provider }: { provider: "github" | "apple" | "discord" | "facebook" | "google" | "microsoft" | "spotify" | "twitch" | "twitter" | "dropbox" | "linkedin" | "gitlab" | "tiktok" | "reddit" | "roblox" | "vk" | "kick" }, callbackUrl: string) => {
+export const signInWithSocial = async ({ provider }: { provider: "github" | "apple" | "discord" | "facebook" | "google" | "microsoft" | "spotify" | "twitch" | "twitter" | "dropbox" | "linkedin" | "gitlab" | "tiktok" | "reddit" | "roblox" | "vk" | "kick" }, callbackUrl: string, scopes: string[]) => {
   try {
     const data = await authClient.signIn.social({
       provider: provider,
-      callbackURL: callbackUrl
+      callbackURL: callbackUrl,
+      scopes: scopes
     })
     return data;
   } catch (error) {

@@ -1,44 +1,54 @@
-// import fetch from "node-fetch";
+import { getUserAccessToken } from "./authServices"
 
-// // Définition du type pour la réponse des tokens Spotify
-// export interface SpotifyTokenResponse {
-//   access_token: string;
-//   token_type: string;
-//   expires_in: number;
-//   refresh_token: string;
-//   scope: string;
-// }
+type NoSession = { success: boolean; error_message: string };
+type ErrorToken= { success: boolean; message: string}
 
-// // Fonction pour échanger un code d'autorisation contre des tokens
-// export async function exchangeCodeForTokens(
-//   code: string, 
-//   redirectUri: string
-// ): Promise<SpotifyTokenResponse> {
-//   const response = await fetch("https://accounts.spotify.com/api/token", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/x-www-form-urlencoded",
-//       Authorization:
-//         "Basic " +
-//         Buffer.from(
-//           `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-//         ).toString("base64"),
-//     },
-//     body: new URLSearchParams({
-//       grant_type: "authorization_code",
-//       code: code,
-//       redirect_uri: redirectUri,
-//       client_id: process.env.SPOTIFY_CLIENT_ID || "",
-//       client_secret: process.env.SPOTIFY_CLIENT_SECRET || "",
-//     }),
-//   });
 
-//   if (!response.ok) {
-//     const errorData = await response.json();
-//     throw new Error(
-//       `Failed to exchange code for tokens: ${JSON.stringify(errorData)}`
-//     );
-//   }
+async function fetchSpotifyUserId(token: string | ErrorToken | NoSession) {
+    const response = await fetch('https://api.spotify.com/v1/me', {
+        headers: { Authorization: 'Bearer ' + token }
+    });
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data.id; 
+}
 
-//   return response.json() as Promise<SpotifyTokenResponse>;
-// }
+export const spotifyController = {
+    getUserToken: async (req, res) => {
+        const token = await getUserAccessToken(req)
+        if (token) {
+            res.json(token);
+        } else {
+            res.status(404).json({ error: "Token not found" });
+        }
+    },
+
+    getUserPlaylist: async (req, res) => {
+    const token = await getUserAccessToken(req);
+    if (!token) {
+        return res.status(404).json({ error: "Token not found" });
+    }
+
+    // Récupérer l'ID Spotify de l'utilisateur
+    const userId = await fetchSpotifyUserId(token);
+    if (!userId) {
+        return res.status(404).json({ error: "Spotify user ID not found" });
+    }
+
+    // Utiliser l'ID dans la requête pour les playlists
+    const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        headers: { Authorization: 'Bearer ' + token }
+    });
+    
+    const data = await response.json();
+    
+    const playlists = data.items.map((item, i) => ({
+        link: item.href,
+        id: item.id,
+        image: item.images?.[0]?.url,
+        name: item.name
+    }))
+
+    res.json({ data: playlists });
+    }
+}

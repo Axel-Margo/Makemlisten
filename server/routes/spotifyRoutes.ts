@@ -1,18 +1,9 @@
 import express from 'express'
 import { prisma } from '../lib/auth';
+import { spotifyController } from '../services/spotifyServices';
 const router = express.Router()
 
-router.get("/token", async (req, res) => {
+router.get("/token", spotifyController.getUserToken);
+router.get("/playlist", spotifyController.getUserPlaylist);
 
-    const userId = "EFNtwMDElLisjUYkCLZg5Peb3D7kVo6Y"
-
-    const token = await prisma.account.findUnique(
-    {
-    where: { id: userId }, 
-    select: { accessToken: true }
-    }
-)
-     console.log(token)
-    });
-
-    export default router
+export default router

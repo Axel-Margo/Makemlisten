@@ -12,26 +12,25 @@ export const auth = betterAuth({
     emailAndPassword: {
       enabled: true,
     },
+        session: {
+        cookieCache: {
+            enabled: true,
+            maxAge: 10 * 60 
+        }
+    },
     socialProviders: {
       spotify: {
         clientId: process.env.SPOTIFY_CLIENT_ID as string,
         clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
+        scopes: ["playlist-read-private", "playlist-read-collaborative", "user-read-private", "user-read-email"]
       },
       twitter: {
         clientId: process.env.TWITTER_CLIENT_ID as string,
         clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
-        scopes: ["tweet.read", "users.read", "offline.access"], // Scopes nécessaires
+        scopes: ["tweet.read", "users.read", "offline.access"], 
       },
     },
-    advanced: {
-           defaultCookieAttributes: {
-          secure: false, // A chang€r en prod
-          httpOnly: false,
-          sameSite: "none",  // Allows CORS-based cookie sharing across subdomains
-          partitioned: true, // New browser standards will mandate this for foreign cookies
-      } },
     trustedOrigins: [
-      "http://localhost:3001", // Origine du frontend
-      "http://localhost:5431"// Origine du backend
+      "http://localhost:3001", 
     ],
   });

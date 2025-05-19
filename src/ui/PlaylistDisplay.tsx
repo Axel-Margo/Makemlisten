@@ -9,7 +9,7 @@ export const PlaylistDisplay = () => {
     })
 
     const shareCurrentPlaylist = () => {
-
+ return null 
     }
     
     const data = {
@@ -34,7 +34,7 @@ export const PlaylistDisplay = () => {
     
     return (
   <div className="w-full  flex flex-col mt-2">
-    {data.items.map((playlist: any) => (
+    {query.data.map((playlist: any) => (
       <div
         key={playlist.id}
         className="flex flex-row mt-4 first:mt-0 border-black/20 border" onClick={shareCurrentPlaylist}
