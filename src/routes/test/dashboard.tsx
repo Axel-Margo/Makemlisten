@@ -7,8 +7,6 @@ export const Route = createFileRoute('/test/dashboard')({
 
 const { data: session } = await authClient.getSession()
 
-
-
 function RouteComponent() {
   return <div>Hello {session?.session.userId} </div>
 }

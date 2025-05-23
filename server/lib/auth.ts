@@ -22,7 +22,7 @@ export const auth = betterAuth({
       spotify: {
         clientId: process.env.SPOTIFY_CLIENT_ID as string,
         clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
-        scopes: ["playlist-read-private", "playlist-read-collaborative", "user-read-private", "user-read-email"]
+        scopes: ["playlist-read-private", "playlist-read-collaborative", "user-read-private", "user-read-email", "streaming"]
       },
       twitter: {
         clientId: process.env.TWITTER_CLIENT_ID as string,

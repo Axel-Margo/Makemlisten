@@ -1,9 +1,10 @@
 import { authClient } from "../../src/lib/auth-client";
 import { prisma } from "../lib/auth"
+import { type Request } from 'express';
+import { fromNodeHeaders } from "better-auth/node";
 
-
-export const getUserAccessToken = async (req) => {
-  const { data: session } = await authClient.getSession({ fetchOptions: { headers: req.headers } })
+export const getUserAccessToken = async (req: Request) => {
+  const { data: session } = await authClient.getSession({ fetchOptions: { headers: fromNodeHeaders(req.headers) } })
  
   try {
     if (!session || session == undefined ) {

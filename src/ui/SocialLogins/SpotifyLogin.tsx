@@ -10,8 +10,7 @@ export const SpotifyLogin = () => {
       const data = await signInWithSocial(
         { provider: "spotify" },
         "http://localhost:5431/api/auth/callback/spotify",
-        ["playlist-read-private", "playlist-read-collaborative", "user-read-private", "user-read-email"]
-
+        ["playlist-read-private", "playlist-read-collaborative", "user-read-private", "user-read-email", "streaming"]
       );
       console.log("Spotify login successful:", data);
     } catch (error) {

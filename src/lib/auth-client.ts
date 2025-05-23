@@ -1,5 +1,5 @@
 import { createAuthClient } from "better-auth/react"
- 
+
 export const authClient = createAuthClient({
     baseURL: "http://localhost:5431" // the base url of your auth server
 })
@@ -15,4 +15,4 @@ export const signInWithSocial = async ({ provider }: { provider: "github" | "app
   } catch (error) {
     console.error("Error during social sign-in:", error)
   }
-}
+} 
