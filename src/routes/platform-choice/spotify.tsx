@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { PlaylistDisplay } from '../../../ui/PlaylistDisplay.jsx'
+import { PlaylistDisplay } from '../../ui/PlaylistDisplay.js'
 
-export const Route = createFileRoute('/share/platform-choice/spotify')({
+export const Route = createFileRoute('/platform-choice/spotify')({
   component: SpotifyPlaylists,
 })
 

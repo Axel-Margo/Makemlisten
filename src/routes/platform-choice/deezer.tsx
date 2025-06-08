@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/share/platform-choice/deezer')({
+export const Route = createFileRoute('/platform-choice/deezer')({
   component: RouteComponent,
 })
 

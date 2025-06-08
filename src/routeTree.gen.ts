@@ -12,14 +12,14 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as ShareIndexImport } from './routes/share/index'
+import { Route as PlatformChoiceIndexImport } from './routes/platform-choice/index'
 import { Route as TestDashboardImport } from './routes/test/dashboard'
+import { Route as SharePlaylistIdImport } from './routes/share/$playlistId'
+import { Route as PlatformChoiceTidalImport } from './routes/platform-choice/tidal'
+import { Route as PlatformChoiceSpotifyImport } from './routes/platform-choice/spotify'
+import { Route as PlatformChoiceDeezerImport } from './routes/platform-choice/deezer'
+import { Route as PlatformChoiceAppleMusicImport } from './routes/platform-choice/apple-music'
 import { Route as AuthentificationConnexionPageImport } from './routes/authentification/connexion-page'
-import { Route as SharePlatformChoiceIndexImport } from './routes/share/platform-choice/index'
-import { Route as SharePlatformChoiceTidalImport } from './routes/share/platform-choice/tidal'
-import { Route as SharePlatformChoiceSpotifyImport } from './routes/share/platform-choice/spotify'
-import { Route as SharePlatformChoiceDeezerImport } from './routes/share/platform-choice/deezer'
-import { Route as SharePlatformChoiceAppleMusicImport } from './routes/share/platform-choice/apple-music'
 
 // Create/Update Routes
 
@@ -29,9 +29,9 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ShareIndexRoute = ShareIndexImport.update({
-  id: '/share/',
-  path: '/share/',
+const PlatformChoiceIndexRoute = PlatformChoiceIndexImport.update({
+  id: '/platform-choice/',
+  path: '/platform-choice/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -41,43 +41,40 @@ const TestDashboardRoute = TestDashboardImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SharePlaylistIdRoute = SharePlaylistIdImport.update({
+  id: '/share/$playlistId',
+  path: '/share/$playlistId',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlatformChoiceTidalRoute = PlatformChoiceTidalImport.update({
+  id: '/platform-choice/tidal',
+  path: '/platform-choice/tidal',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlatformChoiceSpotifyRoute = PlatformChoiceSpotifyImport.update({
+  id: '/platform-choice/spotify',
+  path: '/platform-choice/spotify',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlatformChoiceDeezerRoute = PlatformChoiceDeezerImport.update({
+  id: '/platform-choice/deezer',
+  path: '/platform-choice/deezer',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlatformChoiceAppleMusicRoute = PlatformChoiceAppleMusicImport.update({
+  id: '/platform-choice/apple-music',
+  path: '/platform-choice/apple-music',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AuthentificationConnexionPageRoute =
   AuthentificationConnexionPageImport.update({
     id: '/authentification/connexion-page',
     path: '/authentification/connexion-page',
-    getParentRoute: () => rootRoute,
-  } as any)
-
-const SharePlatformChoiceIndexRoute = SharePlatformChoiceIndexImport.update({
-  id: '/share/platform-choice/',
-  path: '/share/platform-choice/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SharePlatformChoiceTidalRoute = SharePlatformChoiceTidalImport.update({
-  id: '/share/platform-choice/tidal',
-  path: '/share/platform-choice/tidal',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SharePlatformChoiceSpotifyRoute = SharePlatformChoiceSpotifyImport.update(
-  {
-    id: '/share/platform-choice/spotify',
-    path: '/share/platform-choice/spotify',
-    getParentRoute: () => rootRoute,
-  } as any,
-)
-
-const SharePlatformChoiceDeezerRoute = SharePlatformChoiceDeezerImport.update({
-  id: '/share/platform-choice/deezer',
-  path: '/share/platform-choice/deezer',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SharePlatformChoiceAppleMusicRoute =
-  SharePlatformChoiceAppleMusicImport.update({
-    id: '/share/platform-choice/apple-music',
-    path: '/share/platform-choice/apple-music',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -99,6 +96,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthentificationConnexionPageImport
       parentRoute: typeof rootRoute
     }
+    '/platform-choice/apple-music': {
+      id: '/platform-choice/apple-music'
+      path: '/platform-choice/apple-music'
+      fullPath: '/platform-choice/apple-music'
+      preLoaderRoute: typeof PlatformChoiceAppleMusicImport
+      parentRoute: typeof rootRoute
+    }
+    '/platform-choice/deezer': {
+      id: '/platform-choice/deezer'
+      path: '/platform-choice/deezer'
+      fullPath: '/platform-choice/deezer'
+      preLoaderRoute: typeof PlatformChoiceDeezerImport
+      parentRoute: typeof rootRoute
+    }
+    '/platform-choice/spotify': {
+      id: '/platform-choice/spotify'
+      path: '/platform-choice/spotify'
+      fullPath: '/platform-choice/spotify'
+      preLoaderRoute: typeof PlatformChoiceSpotifyImport
+      parentRoute: typeof rootRoute
+    }
+    '/platform-choice/tidal': {
+      id: '/platform-choice/tidal'
+      path: '/platform-choice/tidal'
+      fullPath: '/platform-choice/tidal'
+      preLoaderRoute: typeof PlatformChoiceTidalImport
+      parentRoute: typeof rootRoute
+    }
+    '/share/$playlistId': {
+      id: '/share/$playlistId'
+      path: '/share/$playlistId'
+      fullPath: '/share/$playlistId'
+      preLoaderRoute: typeof SharePlaylistIdImport
+      parentRoute: typeof rootRoute
+    }
     '/test/dashboard': {
       id: '/test/dashboard'
       path: '/test/dashboard'
@@ -106,46 +138,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestDashboardImport
       parentRoute: typeof rootRoute
     }
-    '/share/': {
-      id: '/share/'
-      path: '/share'
-      fullPath: '/share'
-      preLoaderRoute: typeof ShareIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/share/platform-choice/apple-music': {
-      id: '/share/platform-choice/apple-music'
-      path: '/share/platform-choice/apple-music'
-      fullPath: '/share/platform-choice/apple-music'
-      preLoaderRoute: typeof SharePlatformChoiceAppleMusicImport
-      parentRoute: typeof rootRoute
-    }
-    '/share/platform-choice/deezer': {
-      id: '/share/platform-choice/deezer'
-      path: '/share/platform-choice/deezer'
-      fullPath: '/share/platform-choice/deezer'
-      preLoaderRoute: typeof SharePlatformChoiceDeezerImport
-      parentRoute: typeof rootRoute
-    }
-    '/share/platform-choice/spotify': {
-      id: '/share/platform-choice/spotify'
-      path: '/share/platform-choice/spotify'
-      fullPath: '/share/platform-choice/spotify'
-      preLoaderRoute: typeof SharePlatformChoiceSpotifyImport
-      parentRoute: typeof rootRoute
-    }
-    '/share/platform-choice/tidal': {
-      id: '/share/platform-choice/tidal'
-      path: '/share/platform-choice/tidal'
-      fullPath: '/share/platform-choice/tidal'
-      preLoaderRoute: typeof SharePlatformChoiceTidalImport
-      parentRoute: typeof rootRoute
-    }
-    '/share/platform-choice/': {
-      id: '/share/platform-choice/'
-      path: '/share/platform-choice'
-      fullPath: '/share/platform-choice'
-      preLoaderRoute: typeof SharePlatformChoiceIndexImport
+    '/platform-choice/': {
+      id: '/platform-choice/'
+      path: '/platform-choice'
+      fullPath: '/platform-choice'
+      preLoaderRoute: typeof PlatformChoiceIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -156,38 +153,38 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/authentification/connexion-page': typeof AuthentificationConnexionPageRoute
+  '/platform-choice/apple-music': typeof PlatformChoiceAppleMusicRoute
+  '/platform-choice/deezer': typeof PlatformChoiceDeezerRoute
+  '/platform-choice/spotify': typeof PlatformChoiceSpotifyRoute
+  '/platform-choice/tidal': typeof PlatformChoiceTidalRoute
+  '/share/$playlistId': typeof SharePlaylistIdRoute
   '/test/dashboard': typeof TestDashboardRoute
-  '/share': typeof ShareIndexRoute
-  '/share/platform-choice/apple-music': typeof SharePlatformChoiceAppleMusicRoute
-  '/share/platform-choice/deezer': typeof SharePlatformChoiceDeezerRoute
-  '/share/platform-choice/spotify': typeof SharePlatformChoiceSpotifyRoute
-  '/share/platform-choice/tidal': typeof SharePlatformChoiceTidalRoute
-  '/share/platform-choice': typeof SharePlatformChoiceIndexRoute
+  '/platform-choice': typeof PlatformChoiceIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/authentification/connexion-page': typeof AuthentificationConnexionPageRoute
+  '/platform-choice/apple-music': typeof PlatformChoiceAppleMusicRoute
+  '/platform-choice/deezer': typeof PlatformChoiceDeezerRoute
+  '/platform-choice/spotify': typeof PlatformChoiceSpotifyRoute
+  '/platform-choice/tidal': typeof PlatformChoiceTidalRoute
+  '/share/$playlistId': typeof SharePlaylistIdRoute
   '/test/dashboard': typeof TestDashboardRoute
-  '/share': typeof ShareIndexRoute
-  '/share/platform-choice/apple-music': typeof SharePlatformChoiceAppleMusicRoute
-  '/share/platform-choice/deezer': typeof SharePlatformChoiceDeezerRoute
-  '/share/platform-choice/spotify': typeof SharePlatformChoiceSpotifyRoute
-  '/share/platform-choice/tidal': typeof SharePlatformChoiceTidalRoute
-  '/share/platform-choice': typeof SharePlatformChoiceIndexRoute
+  '/platform-choice': typeof PlatformChoiceIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/authentification/connexion-page': typeof AuthentificationConnexionPageRoute
+  '/platform-choice/apple-music': typeof PlatformChoiceAppleMusicRoute
+  '/platform-choice/deezer': typeof PlatformChoiceDeezerRoute
+  '/platform-choice/spotify': typeof PlatformChoiceSpotifyRoute
+  '/platform-choice/tidal': typeof PlatformChoiceTidalRoute
+  '/share/$playlistId': typeof SharePlaylistIdRoute
   '/test/dashboard': typeof TestDashboardRoute
-  '/share/': typeof ShareIndexRoute
-  '/share/platform-choice/apple-music': typeof SharePlatformChoiceAppleMusicRoute
-  '/share/platform-choice/deezer': typeof SharePlatformChoiceDeezerRoute
-  '/share/platform-choice/spotify': typeof SharePlatformChoiceSpotifyRoute
-  '/share/platform-choice/tidal': typeof SharePlatformChoiceTidalRoute
-  '/share/platform-choice/': typeof SharePlatformChoiceIndexRoute
+  '/platform-choice/': typeof PlatformChoiceIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -195,60 +192,60 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/authentification/connexion-page'
+    | '/platform-choice/apple-music'
+    | '/platform-choice/deezer'
+    | '/platform-choice/spotify'
+    | '/platform-choice/tidal'
+    | '/share/$playlistId'
     | '/test/dashboard'
-    | '/share'
-    | '/share/platform-choice/apple-music'
-    | '/share/platform-choice/deezer'
-    | '/share/platform-choice/spotify'
-    | '/share/platform-choice/tidal'
-    | '/share/platform-choice'
+    | '/platform-choice'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/authentification/connexion-page'
+    | '/platform-choice/apple-music'
+    | '/platform-choice/deezer'
+    | '/platform-choice/spotify'
+    | '/platform-choice/tidal'
+    | '/share/$playlistId'
     | '/test/dashboard'
-    | '/share'
-    | '/share/platform-choice/apple-music'
-    | '/share/platform-choice/deezer'
-    | '/share/platform-choice/spotify'
-    | '/share/platform-choice/tidal'
-    | '/share/platform-choice'
+    | '/platform-choice'
   id:
     | '__root__'
     | '/'
     | '/authentification/connexion-page'
+    | '/platform-choice/apple-music'
+    | '/platform-choice/deezer'
+    | '/platform-choice/spotify'
+    | '/platform-choice/tidal'
+    | '/share/$playlistId'
     | '/test/dashboard'
-    | '/share/'
-    | '/share/platform-choice/apple-music'
-    | '/share/platform-choice/deezer'
-    | '/share/platform-choice/spotify'
-    | '/share/platform-choice/tidal'
-    | '/share/platform-choice/'
+    | '/platform-choice/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthentificationConnexionPageRoute: typeof AuthentificationConnexionPageRoute
+  PlatformChoiceAppleMusicRoute: typeof PlatformChoiceAppleMusicRoute
+  PlatformChoiceDeezerRoute: typeof PlatformChoiceDeezerRoute
+  PlatformChoiceSpotifyRoute: typeof PlatformChoiceSpotifyRoute
+  PlatformChoiceTidalRoute: typeof PlatformChoiceTidalRoute
+  SharePlaylistIdRoute: typeof SharePlaylistIdRoute
   TestDashboardRoute: typeof TestDashboardRoute
-  ShareIndexRoute: typeof ShareIndexRoute
-  SharePlatformChoiceAppleMusicRoute: typeof SharePlatformChoiceAppleMusicRoute
-  SharePlatformChoiceDeezerRoute: typeof SharePlatformChoiceDeezerRoute
-  SharePlatformChoiceSpotifyRoute: typeof SharePlatformChoiceSpotifyRoute
-  SharePlatformChoiceTidalRoute: typeof SharePlatformChoiceTidalRoute
-  SharePlatformChoiceIndexRoute: typeof SharePlatformChoiceIndexRoute
+  PlatformChoiceIndexRoute: typeof PlatformChoiceIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthentificationConnexionPageRoute: AuthentificationConnexionPageRoute,
+  PlatformChoiceAppleMusicRoute: PlatformChoiceAppleMusicRoute,
+  PlatformChoiceDeezerRoute: PlatformChoiceDeezerRoute,
+  PlatformChoiceSpotifyRoute: PlatformChoiceSpotifyRoute,
+  PlatformChoiceTidalRoute: PlatformChoiceTidalRoute,
+  SharePlaylistIdRoute: SharePlaylistIdRoute,
   TestDashboardRoute: TestDashboardRoute,
-  ShareIndexRoute: ShareIndexRoute,
-  SharePlatformChoiceAppleMusicRoute: SharePlatformChoiceAppleMusicRoute,
-  SharePlatformChoiceDeezerRoute: SharePlatformChoiceDeezerRoute,
-  SharePlatformChoiceSpotifyRoute: SharePlatformChoiceSpotifyRoute,
-  SharePlatformChoiceTidalRoute: SharePlatformChoiceTidalRoute,
-  SharePlatformChoiceIndexRoute: SharePlatformChoiceIndexRoute,
+  PlatformChoiceIndexRoute: PlatformChoiceIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -263,13 +260,13 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/authentification/connexion-page",
+        "/platform-choice/apple-music",
+        "/platform-choice/deezer",
+        "/platform-choice/spotify",
+        "/platform-choice/tidal",
+        "/share/$playlistId",
         "/test/dashboard",
-        "/share/",
-        "/share/platform-choice/apple-music",
-        "/share/platform-choice/deezer",
-        "/share/platform-choice/spotify",
-        "/share/platform-choice/tidal",
-        "/share/platform-choice/"
+        "/platform-choice/"
       ]
     },
     "/": {
@@ -278,26 +275,26 @@ export const routeTree = rootRoute
     "/authentification/connexion-page": {
       "filePath": "authentification/connexion-page.tsx"
     },
+    "/platform-choice/apple-music": {
+      "filePath": "platform-choice/apple-music.tsx"
+    },
+    "/platform-choice/deezer": {
+      "filePath": "platform-choice/deezer.tsx"
+    },
+    "/platform-choice/spotify": {
+      "filePath": "platform-choice/spotify.tsx"
+    },
+    "/platform-choice/tidal": {
+      "filePath": "platform-choice/tidal.tsx"
+    },
+    "/share/$playlistId": {
+      "filePath": "share/$playlistId.tsx"
+    },
     "/test/dashboard": {
       "filePath": "test/dashboard.tsx"
     },
-    "/share/": {
-      "filePath": "share/index.tsx"
-    },
-    "/share/platform-choice/apple-music": {
-      "filePath": "share/platform-choice/apple-music.tsx"
-    },
-    "/share/platform-choice/deezer": {
-      "filePath": "share/platform-choice/deezer.tsx"
-    },
-    "/share/platform-choice/spotify": {
-      "filePath": "share/platform-choice/spotify.tsx"
-    },
-    "/share/platform-choice/tidal": {
-      "filePath": "share/platform-choice/tidal.tsx"
-    },
-    "/share/platform-choice/": {
-      "filePath": "share/platform-choice/index.tsx"
+    "/platform-choice/": {
+      "filePath": "platform-choice/index.tsx"
     }
   }
 }

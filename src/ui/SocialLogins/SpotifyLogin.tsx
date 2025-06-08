@@ -23,7 +23,7 @@ export const SpotifyLogin = () => {
       const session = await authClient.getSession(); // Appel correct de la fonction asynchrone
       if (session.data !== null) {
         console.log("Session active:", session);
-        navigate({to: '/share/platform-choice/spotify'})
+        navigate({to: '/platform-choice/spotify'})
         ; // Redirection si une session existe
       } else {
         await handleSpotifyLogin(); // Attente de l'exécution de la fonction

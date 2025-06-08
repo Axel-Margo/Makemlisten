@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PlaylistTracksModal from './PlaylistTracksModal';
+import { PlaylistTracksModal } from './PlaylistTracksModal';
 
 interface PlaylistItemProps {
     id: string;
@@ -7,25 +7,17 @@ interface PlaylistItemProps {
     image?: string;
     owner?: string;
     tracks?: number;
-    link?: string;
-    onClick?: () => void;
 }
 
-export const PlaylistItem = ({ id, name, image, owner, tracks, link, onClick }: PlaylistItemProps) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleClick = () => {
-        console.log('Playlist ID:', id);
-        setIsModalOpen(true);
-        onClick?.();
-    };
+export const PlaylistItem =  ({ id, name, image, owner, tracks }: PlaylistItemProps) => {
+    const [isTracksModalOpen, setIsTracksModalOpen] = useState(false);
 
     return (
         <>
             <div
                 key={id}
                 className="flex flex-row mt-4 first:mt-0 border-black/20 border cursor-pointer hover:bg-neutral-100 h-32" 
-                onClick={handleClick}
+                onClick={() => setIsTracksModalOpen(true)}
             >
                 <div className="w-1/3 h-full">
                     <img 
@@ -49,11 +41,11 @@ export const PlaylistItem = ({ id, name, image, owner, tracks, link, onClick }: 
             </div>
 
             <PlaylistTracksModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                isOpen={isTracksModalOpen}
+                onClose={() => setIsTracksModalOpen(false)}
                 playlistId={id}
                 playlistName={name}
             />
         </>
     );
-} 
+}; 

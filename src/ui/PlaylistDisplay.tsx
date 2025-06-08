@@ -1,16 +1,20 @@
 import { useQuery } from "@tanstack/react-query"
-import { getCurrentUserPlaylists } from "../queries/spotifyQueries"
-import { PlaylistItem } from "./PlaylistItem"
-import type { Playlist } from "../types/playlist"
+import { fetchCurrentUserPlaylists } from "../queries/spotifyQueries"
 import { SearchBar } from "../components/SearchBar"
+import { FilteredPlaylistList } from "../components/FilteredPlaylistList"
+import { useState } from "react"
 
 export const PlaylistDisplay = () => {
-    const { data: playlists, isLoading, isError, error } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ['getPlaylist'],
-        queryFn: getCurrentUserPlaylists,
+        queryFn: fetchCurrentUserPlaylists,
         retry: 1,
         staleTime: 1000 * 60 * 5, 
     })
+    
+    const playlists = data?.currentUserPlaylists
+    
+    const [value, setValue] = useState<string>("");
 
     if (isLoading) {
         return <div className="w-full flex justify-center mt-4">Chargement des playlists...</div>
@@ -28,23 +32,8 @@ export const PlaylistDisplay = () => {
    
     return (
         <div className='flex justify-center flex-col mx-16'>
-
-        <SearchBar />
-
-        <div className="w-full flex flex-col mt-2">
-            {playlists.filter((playlist: Playlist) => playlist.name.toLowerCase().includes(value.toLowerCase()))
-            .map((playlist: Playlist)  => (
-                <PlaylistItem
-                    key={playlist.id}
-                    id={playlist.id}
-                    name={playlist.name}
-                    image={playlist.image}
-                    owner={playlist.owner}
-                    tracks={playlist.tracks}
-                    link={playlist.external_urls?.spotify}
-                />
-            ))}
-        </div>
+            <SearchBar value={value} setValue={setValue} />
+            <FilteredPlaylistList playlists={playlists} searchValue={value} />
         </div>
     );
-}
+};

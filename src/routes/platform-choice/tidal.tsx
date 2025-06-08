@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/share/platform-choice/tidal')({
+export const Route = createFileRoute('/platform-choice/tidal')({
   component: RouteComponent,
 })
 

@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Label } from '../../../components/Label'
+import { Label } from '../../components/Label'
 
-export const Route = createFileRoute('/share/platform-choice/')({
+export const Route = createFileRoute('/platform-choice/')({
   component: RouteComponent,
 })
 
