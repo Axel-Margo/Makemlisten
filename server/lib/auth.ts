@@ -29,6 +29,10 @@ export const auth = betterAuth({
         clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
         scopes: ["tweet.read", "users.read", "offline.access"], 
       },
+      google: {
+        clientId: process.env.GOOGLE_CLIENT_ID as string,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      },
     },
     trustedOrigins: [
       "http://localhost:3001", 
